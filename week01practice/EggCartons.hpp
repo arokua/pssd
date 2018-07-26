@@ -22,7 +22,7 @@ class EggCartons{
                     }
                 }
             }
-`	    if (sum == 0){
+            if (sum == 0){
                 return -1;
             }else{
                 return minSum;
