@@ -4,7 +4,7 @@ using namespace std;
 
 class ThrowTheBall {
     public:
-    int TimesThrown(int N, int M, int L){
+    int timesThrown(int N, int M, int L){
 
         int currentPlayer = 1;
         int times = 0;
