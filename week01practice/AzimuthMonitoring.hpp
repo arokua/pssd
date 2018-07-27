@@ -32,7 +32,7 @@ class AzimuthMonitoring {
             }
         }
 
-	if (angle < 0){
+	while (angle < 0){
                     angle += 360;
          }
         return angle%360;
