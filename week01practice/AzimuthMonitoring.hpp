@@ -14,9 +14,7 @@ class AzimuthMonitoring {
                 angle += 90;
             }else if(instructions[i] == "LEFT"){
                 angle -= 90; 
-                if (angle < 0){
-                    angle += 360;
-                }
+                
             }else if(instructions[i] == "TURN AROUND"){
                 angle += 180;
             }else if (instructions[i] == "HALT"){
@@ -33,6 +31,10 @@ class AzimuthMonitoring {
                 }
             }
         }
+
+	if (angle < 0){
+                    angle += 360;
+         }
         return angle%360;
     }
 };
