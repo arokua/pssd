@@ -29,7 +29,7 @@ class AzimuthMonitoring {
                     
                 }else if (instructions[i].find("LEFT") == 0){
                     instructions[i].replace(0,5,"");
-                    angle += stoi(instructions[i]);              
+                    angle -= stoi(instructions[i]);              
                 }
             }
         }
