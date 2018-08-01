@@ -1,14 +1,14 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
+#include <climits>
 using namespace std;
 
 class MooingCows{
     public:
     int dissatisfaction(vector<string> farmland){
         
-        int Mintota = 100000;
+        int Mintota = INT_MAX;
         
         for (int i = 0; i < farmland.size(); i++){
             for(int j = 0; j < farmland[0].size(); j ++){                
