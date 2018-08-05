@@ -27,8 +27,6 @@ class BlackandRed {
                 }
                 
                 if (nBlack < nRed){
-                    cout << i << " is fail!" << endl;
-                    cout << i << " Ratio: R::" << nRed<< " B: "<<nBlack<<  endl;
                     break;
                 }
                 else if (!(nBlack < nRed)){
