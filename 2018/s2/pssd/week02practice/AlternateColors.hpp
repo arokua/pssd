@@ -10,33 +10,28 @@ class AlternateColors{
         int turn = 1;
         while (sumNow < k){
         
-        if (sumNow >= k){
-                break;
-            }else{
-                if ( turn == 1 && r > 0){
-                    r -= 1;
-                    sumNow+=1;
-                    if (sumNow!= k){
-                        turn += 1;
-                    }
+            if ( turn == 1 && r > 0){
+                r -= 1;
+                sumNow+=1;
+                if (sumNow!= k){
+                    turn += 1;
                 }
-                else if ( turn == 2 && g > 0){
-                    g -= 1;
-                    sumNow+=1;
-                    if (sumNow!= k){
-                        turn +=1;
-                    }
+            }
+            else if ( turn == 2 && g > 0){
+                g -= 1;
+                sumNow+=1;
+                if (sumNow != k){
+                    turn +=1;
                 }
-                
-                else if ( turn == 3 && b > 0){
-                    r -= 1;
-                    sumNow+=1;
-                    if (sumNow!= k){
-                        turn -= 2;
-                    }
-                }
-        
-        }
+            }
+            
+            else if ( turn == 3 && b > 0){
+                r -= 1;
+                sumNow+=1;
+                if (sumNow != k){
+                    turn -= 2;
+                }      
+            }
         }
         
         if (turn == 1){
