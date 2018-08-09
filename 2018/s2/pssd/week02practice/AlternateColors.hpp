@@ -9,17 +9,17 @@ class AlternateColors{
         long sumNow = 0;
         int turn = 1;
         while (sumNow < k){
-            cout << turn << " ";
+            
             if ( turn == 1 && r > 0){
                 r -= 1;
                 sumNow+=1;
                 if (sumNow!= k){
-                    turn += 1;
                     if (g > 0){
                         turn +=1;
-                    }else if (b > 0){ 
+                    }else if (b > 0 && g < 1){
+                        
                         turn += 2;
-                    }else {
+                    }else if (r > 0 && g < 1){
                         turn = 1;
                     }
                 }
@@ -30,8 +30,8 @@ class AlternateColors{
                 if (sumNow != k ){
                     if (b > 0){
                         turn +=1;
-                    }else if (r > 0){ 
-                        turn -= 2;
+                    }else if (r > 0 && b < 1){ 
+                        turn -= 1;
                     }else {
                         turn = 2;
                     }                }
@@ -40,9 +40,9 @@ class AlternateColors{
             else if ( turn == 3 && b > 0){
                 r -= 1;
                 sumNow+=1;
-                    if (g > 0){
+                    if (g > 0 && r < 0){
                         turn -= 1;
-                    }else if (r > 0){ 
+                    }else if (r > 0 ){ 
                         turn -= 2;
                     }else {
                         turn = 3;
