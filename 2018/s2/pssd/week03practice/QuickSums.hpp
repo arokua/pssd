@@ -7,6 +7,7 @@ using namespace std;
 class QuickSums{
     public:
     int minSums(string numbers, int sum){
+
         int re = 0;
         int charLength = 1;
         int S = 0; // the current sum
@@ -19,32 +20,39 @@ class QuickSums{
             for (int i = 0; i < numbers.length(); i++){
                 
                 if (S!= sum){
-                    re += 1;
+                    
                     gotIt = false;
                     
-                    S += numbers[i];
-                    if (S == sum){
+                    S += numbers[i] - 48;
+                    if ( i > 0){
+                        re += 1;
+                    }
+
+                    
+                }
+                else if (S == sum){
                         listOfV.push_back(re);
                         gotIt = true;
+
                         break;
                     }
-                }
+
             }
             
             
-            charLength += 1;
+            if (gotIt == false){
+                charLength += 1;
+            }
             
-        }else if (charLength > 1){
-            cout <<"FAILED";
+        }
+        if (charLength > 1){
+            cout <<"FAILED\n";
             for (int i = 0; i < numbers.length(); i++){
                 int longerNum = stoi(numbers.substr(i, charLength));
-                S = longerNum;
-                if (S == sum){
-                    break;
-                }
-                re = 0;                
                 
-                swapping = numbers.substr(i, charLength);
+                re = 0;        
+                
+                swapping = numbers.substr(i + charLength, charLength);
                 for (int  j = 0; j < swapping.length(); j ++){
                     if (S == sum){
                         listOfV.push_back(re);
