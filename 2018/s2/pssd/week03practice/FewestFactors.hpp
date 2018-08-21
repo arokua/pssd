@@ -36,7 +36,7 @@ class FewestFactors{
     
     public:
     int number(vector<int> digits){
-        
+        sort(digits.begin(),digits.end());
         int iS = 0;
         int ret ;
         
@@ -45,15 +45,15 @@ class FewestFactors{
         }
         
         ret = iS;
-        while (next_permutation(digits.begin(),digits.end())){
-            iS = 0;
-            for (int i = 0; i < digits.size();i ++){
-            iS += Intpower(10,digits.size() - i - 1) * digits[i];
-            }
-        
+        while (next_permutation(digits.begin(),digits.end() )){
             if (totalFactor(ret)> totalFactor(iS)){
                 ret = iS;
             }
+            iS = 0;
+            for (int i = 0; i < digits.size();i ++){
+                iS += Intpower(10,digits.size() - i - 1) * digits[i];
+            }
+
         }
         
         return ret;
