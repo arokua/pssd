@@ -71,3 +71,4 @@ class TimeTravellingCellar{
 			    return determineProfit(profit,decay);
 			}
 		}
+};
