@@ -6,6 +6,23 @@ using namespace std;
 
 class TimeTravellingCellar{
 	private:
+	    bool sameCells(vector<int> v){
+	        int counter = 0;
+	        for (int i = 0; i < v.size() - 1; i++){
+	            if (v[i] == v[i+1]){
+	                counter +=1;
+	            }
+	            else{
+	                counter = 0;
+	            }
+	        }
+	        if (counter + 1 ==v.size()){
+	            return true;
+	        }else {
+	            return false;
+	        }
+	    }
+	    
 		vector<int> getMax(vector<int> v){
 			vector<int> re1 ;
 			re1.reserve(2);
@@ -37,10 +54,15 @@ class TimeTravellingCellar{
 		
 	public:
 		int determineProfit(vector<int> profit, vector<int> decay){
-			if (getMax(profit)[1] != getMin(decay)[1]){
-			    cout << getMax(profit)[0] << " " << getMin(decay)[0]<< endl;
+			cout <<sameCells(profit);
+			if (getMax(profit)[1] != getMin(decay)[1] ){
+			    
 			    return getMax(profit)[0] - getMin(decay)[0];
-			}else {
+		
+			}else if (sameCells(profit) &&sameCells(decay)){
+			    return getMax(profit)[0] - getMin(decay)[0];
+			}
+			else {
 			    return 1;
 			}
 		}
