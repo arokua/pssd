@@ -41,7 +41,7 @@ class TimeTravellingCellar{
 			    cout << getMax(profit)[0] << " " << getMin(decay)[0]<< endl;
 			    return getMax(profit)[0] - getMin(decay)[0];
 			}else {
-			    return -1;
+			    return 1;
 			}
 		}
 };
