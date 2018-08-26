@@ -54,7 +54,10 @@ class TimeTravellingCellar{
 		
 	public:
 		int determineProfit(vector<int> profit, vector<int> decay){
-			cout <<sameCells(profit);
+			
+			if (sameCells(profit) && profit[0] == 0){
+			    return 1;
+			}
 			if (getMax(profit)[1] != getMin(decay)[1] ){
 			    
 			    return getMax(profit)[0] - getMin(decay)[0];
@@ -62,8 +65,9 @@ class TimeTravellingCellar{
 			}else if (sameCells(profit) &&sameCells(decay)){
 			    return getMax(profit)[0] - getMin(decay)[0];
 			}
+
 			else {
-			    return 1;
+			    profit[getMax(profit)[1]] = 0;
+			    return determineProfit(profit,decay);
 			}
 		}
-};
