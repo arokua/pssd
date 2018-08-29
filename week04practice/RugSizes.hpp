@@ -5,7 +5,7 @@ using namespace std;
 
 class RugSizes{
     public:
-    int RugCount (int area){
+    int rugCount (int area){
         int sum = 0;
         
         for (int i = 1; i < (area+1) /2 +1; i++){
