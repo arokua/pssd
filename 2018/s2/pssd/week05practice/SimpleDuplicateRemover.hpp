@@ -24,7 +24,7 @@ class SimpleDuplicateRemover{
 			vector<int>  ret;
 			ret.push_back(0);
 
-			for (int i = 0; i<sequence.size();i++){
+			for (int i = sequence.size()-1; i>-1;i--){
 				if (vecFind(ret,sequence[i]) == false){
 					ret.push_back(sequence[i]);
 				}else if (vecFind(ret,sequence[i]) == true) {
