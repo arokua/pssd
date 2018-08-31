@@ -1,9 +1,9 @@
 #include <iostream>
-#include "Multiples.hpp"
+#include "RugSizes.hpp"
 
 using namespace std;
 
 int main(){
-	Multiples A;
-	cout<< A.number(-1000000,1000000,14)<< "\n";
+	RugSizes A;
+	cout<< A.rugCount(30)<< "\n";
 }
