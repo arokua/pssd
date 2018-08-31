@@ -1,3 +1,4 @@
+#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
@@ -26,6 +27,7 @@ class SimpleDuplicateRemover{
 
 			for (int i = sequence.size()-1; i>-1;i--){
 				if (vecFind(ret,sequence[i]) == false){
+					cout << sequence[i]<<endl;
 					ret.push_back(sequence[i]);
 				}else if (vecFind(ret,sequence[i]) == true) {
 					continue;
