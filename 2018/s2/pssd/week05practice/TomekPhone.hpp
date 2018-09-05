@@ -1,6 +1,7 @@
 #include <vector>
 #include <algorithm>
 #include <numeric>
+#nclude <stdlib.h>
 
 using namespace std;
 
@@ -11,7 +12,7 @@ class TomekPhone{
             return -1;
         }
         else {
-            return 0;
+            return rand()%4000;
         }
     }
 };
