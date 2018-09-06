@@ -70,7 +70,7 @@ class GoodHours{
             }
         }
         
-        cout <<howMany(nextMin,AFterTime);
+        return <<howMany(nextMin,AFterTime);
         
     }
     
