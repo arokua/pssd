@@ -1,12 +1,13 @@
-#include <iostream>
 #include <vector>
 #include <string>
 
 using namespace std;
 
 class GoodHours{
-    public:
+    private:
     int counter = 0;
+    public:
+    
     int digitsMultiS(string s2){
         int m = 1;
         for (int i = 0; i < s2.length(); i++){
@@ -63,23 +64,32 @@ class GoodHours{
     }
     
     int howMany(string beforeTime, string AFterTime){
-        if (beforeTime == AFterTime){
-            return counter;
+
+        if (beforeTime == AFterTime && counter >0){
+            int a = counter;
+            counter = 0;
+            return a;
         }
-        if (isGood(AFterTime) && counter == 0){
-            counter++;
+        else {
+            if (isGood(AFterTime) && counter == 0){
+                counter++;
+                if (AFterTime == beforeTime){
+                    return counter;
+                }
+                
+            }
+            
+            
+            if (isGood(beforeTime)) {
+                counter++;
+            }
+            
+            
+            // Make the next before time
+            
+            
+            return howMany(After1Min(beforeTime),AFterTime);
         }
-        
-        
-        if (isGood(beforeTime) && AFterTime != beforeTime){
-            counter++;
-        }
-        
-        
-        // Make the next before time
-        
-        
-        return howMany(After1Min(beforeTime),AFterTime);
         
     }
     
