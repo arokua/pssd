@@ -79,16 +79,9 @@ class GoodHours{
         }
         else {
             
-            
-            
-            if (isGood(beforeTime)) {
+            if (isGood(beforeTime) && counter > 1) {
                 counter++;
             }
-            
-            
-            // Make the next before time
-            
-            
             return howMany(After1Min(beforeTime),AFterTime);
         }
         
