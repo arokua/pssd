@@ -1,3 +1,4 @@
+#include <iostream>
 #include <vector>
 #include <string>
 
@@ -91,6 +92,5 @@ class GoodHours{
             return howMany(After1Min(beforeTime),AFterTime);
         }
         
-    }
-    
+    }  
 };
