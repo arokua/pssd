@@ -31,6 +31,37 @@ class GoodHours{
         }
     }
     
+    string After1Min(string s){
+        string nextMin = "";
+        if (s.substr(3,2) == "59"){
+            nextMin = ":00";
+            if (s.substr(0,2) == "23"){
+                nextMin = "00" + nextMin;
+            }else {
+                if (s[0] == '0' && s[1] != '9'){
+                    
+                    nextMin = '0' + to_string(s[1] - 47)  + nextMin;
+                }else {
+
+                    nextMin = to_string(stoi(s.substr(0,2)) + 1)  + nextMin;
+
+                }
+                
+            }
+            
+        }
+        
+        else {
+            if (s[3] == '0' && s[4]!= '9'){
+                nextMin = s.substr(0,2) + ":0" + to_string(stoi(s.substr(3,2)) + 1);
+            }else {
+                nextMin = s.substr(0,2) + ":" +to_string(stoi(s.substr(3,2)) + 1);
+            }
+        }
+        
+        return nextMin;
+    }
+    
     int howMany(string beforeTime, string AFterTime){
         if (beforeTime == AFterTime){
             return counter;
@@ -40,37 +71,15 @@ class GoodHours{
         }
         
         
-        else if (isGood(beforeTime)){
+        if (isGood(beforeTime) && AFterTime != beforeTime){
             counter++;
         }
         
         
         // Make the next before time
-        string nextMin = "";
-        if (beforeTime.substr(3,2) == "59"){
-            nextMin = ":00";
-            if (beforeTime.substr(0,2) == "23"){
-                nextMin = "00" + nextMin;
-            }else {
-                if (beforeTime[0] = '0' && beforeTime[1] != '9'){
-                    nextMin = '0' + to_string(beforeTime[1] - 47) + ":" + nextMin;
-                }else {
-                    nextMin = to_string(stoi(beforeTime.substr(0,2)) + 1) + ":" + nextMin;
-                }
-                
-            }
-            
-        }
         
-        else {
-            if (beforeTime[3] == '0' && beforeTime[4]!= '9'){
-                nextMin = beforeTime.substr(0,2) + ":0" + to_string(stoi(beforeTime.substr(3,2)) + 1);
-            }else {
-                nextMin = beforeTime.substr(0,2) + ":" +to_string(stoi(beforeTime.substr(3,2)) + 1);
-            }
-        }
         
-        return howMany(nextMin,AFterTime);
+        return howMany(After1Min(beforeTime),AFterTime);
         
     }
     
