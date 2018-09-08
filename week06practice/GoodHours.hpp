@@ -64,14 +64,14 @@ class GoodHours{
         return nextMin;
     }
     
-    int howMany(string beforeTime, string AFterTime){
-
-        
+    int howMany(string beforeTime, string AFterTime){      
         
             if (isGood(AFterTime) && counter == 0){
                 counter++ ;
                 if (AFterTime == beforeTime){
-                    return counter;
+                    int a = counter;
+                    counter = 0;
+                    return a;
                 }
             }
             if (isGood(beforeTime) && beforeTime!= AFterTime) {
@@ -80,9 +80,9 @@ class GoodHours{
             if (beforeTime!= AFterTime){
                 return howMany(After1Min(beforeTime),AFterTime);
             }else {
-                return counter;
+                int a = counter;
+                counter = 0;
+                return a;
             }
-        
-        
     }  
 };
