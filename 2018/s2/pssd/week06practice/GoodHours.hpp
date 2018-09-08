@@ -66,24 +66,23 @@ class GoodHours{
     
     int howMany(string beforeTime, string AFterTime){
 
-        if (beforeTime == AFterTime){
-            if (counter > 0){
-                return counter;
-            }else {
-                if (!isGood(beforeTime)){
-                    return 0;
-                }else {
-                    return 1;
+        
+        
+            if (isGood(AFterTime) && counter == 0){
+                counter++ ;
+                if (AFterTime == beforeTime){
+                    return counter;
                 }
             }
-        }
-        else {
-            
-            if (isGood(beforeTime) && counter > 1) {
+            if (isGood(beforeTime) && beforeTime!= AFterTime) {
                 counter++;
             }
-            return howMany(After1Min(beforeTime),AFterTime);
-        }
+            if (beforeTime!= AFterTime){
+                return howMany(After1Min(beforeTime),AFterTime);
+            }else {
+                return counter;
+            }
+        
         
     }  
 };
