@@ -1,3 +1,6 @@
+#include <string>
+#include <vector>
+
 class PaternityTest{
     public:
     vector<int> possibleFathers(string child, string mother, vector<string> men){
