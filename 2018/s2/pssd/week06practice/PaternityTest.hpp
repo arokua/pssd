@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 
+using namespace std;
 class PaternityTest{
     public:
     vector<int> possibleFathers(string child, string mother, vector<string> men){
