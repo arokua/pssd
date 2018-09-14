@@ -29,4 +29,20 @@ public:
 		}
 		return true;
 	}
+
+	int n ;
+	int lastHand(vector<int>hands, int K){
+		n = maxVec(hands)[0];
+		if (K == 0){
+			return n;
+
+		}
+
+		
+
+		else {
+			hands[maxVec(hands)[0]] -= 1;
+			return lastHand(hands, K -1);
+		}
+	}
 };
