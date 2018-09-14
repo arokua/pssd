@@ -19,8 +19,6 @@ int main(){
 
 
 
-	for (int i =0; i < A.process(C).size(); i++){
-		cout << A.process(C)[i] << " ";
-	}
+	A.process(C);
 	cout <<endl;
 }
