@@ -29,7 +29,17 @@ public:
 		}
 		return true;
 	}
-
+	bool hasDuplicate(vector<int> v, int d){
+		int counter = 0;
+		for (int i = 1; i < v.size(); i++){
+			if (v[i] == d){
+				counter ++;
+			}
+		}
+		if (counter > 1){
+			return true;
+		}
+	}
 	int n ;
 	int lastHand(vector<int>hands, int K){
 		n = maxVec(hands)[0];
@@ -38,11 +48,15 @@ public:
 
 		}
 
-		
+
 
 		else {
-			hands[maxVec(hands)[0]] -= 1;
-			return lastHand(hands, K -1);
+			if (!hasDuplicate( hands, maxVec(hands)[1] ) ){
+				hands[maxVec(hands)[0]] -= 1;
+				return lastHand(hands, K -1);
+			}
+
+			
 		}
 	}
 };

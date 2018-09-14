@@ -7,11 +7,9 @@ using namespace std;
 int main() {
 	KokoBananas K;
 	vector<int> a;
-	a.push_back(13);
-	a.push_back(75);
-	a.push_back(24);
-	a.push_back(55);
-
-
-	cout <<K.lastHand(a,140)<<endl;
+	a.push_back(4);
+	a.push_back(9);
+	a.push_back(5);
+	
+	cout <<K.lastHand(a,18)<<endl;
 }
