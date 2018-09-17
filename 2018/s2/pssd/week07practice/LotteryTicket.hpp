@@ -36,6 +36,9 @@ class LotteryTicket {
         else if (price == b + c + d){
             return go;
         }
+	else if ( price == a + c +d){
+	    return go;
+	}
         else if ( price == a+ b+ c+ d){
             return go;
         }
