@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class TaliluluCoffe{
+class TaliluluCoffee{
     public:
     int maxTips(vector<int> tips){
         vector<int> orderToServe;
