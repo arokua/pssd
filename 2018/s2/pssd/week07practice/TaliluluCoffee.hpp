@@ -1,4 +1,3 @@
-#include <iostream>
 #include <vector>
 #include <algorithm>
 
@@ -6,25 +5,17 @@ using namespace std;
 
 class TaliluluCoffee{
     public:
+    
     int maxTip(vector<int> tips){
-        vector<int> orderToServe;
+        sort(tips.rbegin(),tips.rend());
         int re = 0;
         for (int i = 0; i < tips.size(); i++){
-            orderToServe.push_back(i);
-            re += tips[i] - i;
-        }
-        int newTips = 0;
-        while (next_permutation(orderToServe.begin(), orderToServe.end())){
-            for (int i = 0; i < tips.size(); i++){
-                if (tips[i] - orderToServe[i] > 0){
-                    newTips += tips[i] - orderToServe[i];
-                }
-
+            int a = tips[i] - i;
+            if (a >= 0){
+                re += a;
             }
-            
-            re = max(newTips, re);
-            newTips = 0;
         }
+        
         
         return re;
     }
