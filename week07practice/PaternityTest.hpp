@@ -18,7 +18,7 @@ class PaternityTest{
                 n.push_back(i);
             }
         }
-        if (n.size() < child.length() ){
+        if (n.size() < child.length()/2 ){
             c = true;
         }
         
