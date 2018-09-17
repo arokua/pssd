@@ -33,6 +33,7 @@ class MinimalDifference{
     int findNumber(int A, int B, int C){
         int target = sumDigits(C);
         int re = A;
+	int minDiff = 999999999;
         for (int i = A; i < B + 1; i++){
             int n = sumDigits(i);
             if (minDiff >absolute(n - target)){
