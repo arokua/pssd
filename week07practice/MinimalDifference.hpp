@@ -32,16 +32,14 @@ class MinimalDifference{
     
     int findNumber(int A, int B, int C){
         int target = sumDigits(C);
-        int re;
+        int re = A;
         for (int i = A; i < B + 1; i++){
-            if (minDiff >absolute(sumDigits(i) - sumDigits(C))){
-                minDiff = absolute(sumDigits(i) - sumDigits(C));
+            int n = sumDigits(i);
+            if (minDiff >absolute(n - target)){
+                minDiff = absolute(n - target);
                 re = i;
             }
         }
-        
-        
-        minDiff = 0;
         return re;
     }
         
