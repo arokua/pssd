@@ -6,7 +6,7 @@ using namespace std;
 
 class TaliluluCoffee{
     public:
-    int maxTips(vector<int> tips){
+    int maxTip(vector<int> tips){
         vector<int> orderToServe;
         int re = 0;
         for (int i = 0; i < tips.size(); i++){
