@@ -7,12 +7,6 @@ using namespace std;
 class Thimbles{
     private:
     int currentIn = 1;
-    int re;
-    int reset(int a, int b, int o){
-        b = a;
-        a = o;
-        return b;
-    }
     public:
     void swapBall(string s){
         if ( s[0] - 48 == currentIn){
@@ -26,9 +20,11 @@ class Thimbles{
     int thimbleWithBall(vector<string> swaps){
         for (int i = 0; i <swaps.size(); i++){
             swapBall(swaps[i]);
-            cout<<currentIn <<endl;
         }
-        return reset(currentIn, re, 1);
+        int c = currentIn;
+        currentIn = 1;
+        return c;
+        
     }
     
 };
