@@ -29,7 +29,7 @@ class Thimbles{
     }
     
     
-    int thimbleWithBalls(vector<string> swaps){
+    int thimbleWithBall(vector<string> swaps){
         for (int i = 0; i <swaps.size(); i++){
             swapBall(swaps[i]);
         }
