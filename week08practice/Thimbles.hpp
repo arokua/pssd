@@ -5,20 +5,15 @@
 using namespace std;
 
 class Thimbles{
-    public:
-    bool firstBall(vector<string> s,bool calledB4){
-        for (int i = 0; i < int(s.size()); i ++){
-            for (int j = 0; j < 3; j++){
-                if (s[i][j] == '1' && calledB4 == false){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-    
+    private:
     int currentIn = 1;
-    
+    int re;
+    int reset(int a, int b, int o){
+        b = a;
+        a = o;
+        return b;
+    }
+    public:
     void swapBall(string s){
         if ( s[0] - 48 == currentIn){
             currentIn = s[2] - 48;
@@ -28,12 +23,12 @@ class Thimbles{
         
     }
     
-    
-    int thimbleWithBall(vector<string> swaps){
+    int thimbleWithBalls(vector<string> swaps){
         for (int i = 0; i <swaps.size(); i++){
             swapBall(swaps[i]);
+            cout<<currentIn <<endl;
         }
-        return currentIn;
+        return reset(currentIn, re, 1);
     }
     
 };
