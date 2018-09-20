@@ -32,54 +32,7 @@ class ShipBoxes{
             re = min(TotalArea(dimensions[0], dimensions[1], dimensions[2]), re);
         }
         
-        dimensions[0] = a[0] + b[1];
-        dimensions[1] = a[1];
-        dimensions[2] = a[2];
-        re = min(re,TotalArea(dimensions[0], dimensions[1], dimensions[2]));
-        while (next_permutation(dimensions.begin(),dimensions.end())){
-            re = min(TotalArea(dimensions[0], dimensions[1], dimensions[2]), re);
-        }
         
-        dimensions[0] = a[0] + b[2];
-        dimensions[1] = a[1];
-        dimensions[2] = a[2];
-        re = min(re,TotalArea(dimensions[0], dimensions[1], dimensions[2]));
-        while (next_permutation(dimensions.begin(),dimensions.end())){
-            re = min(TotalArea(dimensions[0], dimensions[1], dimensions[2]), re);
-        }
-        
-        dimensions[0] = a[1] + b[0];
-        dimensions[1] = a[0];
-        dimensions[2] = a[2];
-        re = min(re,TotalArea(dimensions[0], dimensions[1], dimensions[2]));
-        while (next_permutation(dimensions.begin(),dimensions.end())){
-            re = min(TotalArea(dimensions[0], dimensions[1], dimensions[2]), re);
-        }
-        
-        dimensions[0] = a[1] + b[1];
-        dimensions[1] = a[0];
-        dimensions[2] = a[2];
-        re = min(re,TotalArea(dimensions[0], dimensions[1], dimensions[2]));
-        while (next_permutation(dimensions.begin(),dimensions.end())){
-            re = min(TotalArea(dimensions[0], dimensions[1], dimensions[2]), re);
-        }
-        
-        
-        dimensions[0] = a[1] + b[2];
-        dimensions[1] = a[0];
-        dimensions[2] = a[2];
-        re = min(re,TotalArea(dimensions[0], dimensions[1], dimensions[2]));
-        while (next_permutation(dimensions.begin(),dimensions.end())){
-            re = min(TotalArea(dimensions[0], dimensions[1], dimensions[2]), re);
-        }
-        
-        dimensions[0] = a[2] + b[0];
-        dimensions[1] = b[1];
-        dimensions[2] = b[0];
-        re = min(re,TotalArea(dimensions[0], dimensions[1], dimensions[2]));
-        while (next_permutation(dimensions.begin(),dimensions.end())){
-            re = min(TotalArea(dimensions[0], dimensions[1], dimensions[2]), re);
-        }
         return re;
     }
 };
