@@ -33,6 +33,14 @@ class ShipBoxes{
         }
         
         
+        dimensions[0] = b[0] + a[0];
+        dimensions[1] = b[1];
+        dimensions[2] = b[2];
+        re = min(re,TotalArea(dimensions[0], dimensions[1], dimensions[2]));
+        while (next_permutation(dimensions.begin(),dimensions.end())){
+            re = min(TotalArea(dimensions[0], dimensions[1], dimensions[2]), re);
+        }
+        
         return re;
     }
 };
