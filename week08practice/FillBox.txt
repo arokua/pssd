@@ -1,0 +1,75 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <map>
+
+using namespace std;
+
+class FillBox{
+    public:
+    int Base2Pow(int n){
+        if (n == 0){
+            return 1;
+        }
+        return 2*Base2Pow(n - 1);
+    }
+    
+    int cubeVolume(int side){
+        return Base2Pow(side) * Base2Pow(side) * Base2Pow(side);
+    }
+    
+    int vol(int l, int h, int w){
+        return l * h * w;
+    }
+    
+    vector<int> cVolList(vector<int> cubes){
+        vector<int> re;
+        re.reserve(cubes.size());
+        for (int i = 0; i < cubes.size(); i ++){
+            if (cubes[i] > 0){
+                re.push_back(cubeVolume(i));
+            }else {
+                re.push_back(0);
+            }
+        }
+        return re;
+    }
+    
+    int maxVecVal(vector<int> v){
+        int re = 0;
+        for (int i = 0; i < v.size(); i ++){
+            re = max(re,v[i]);
+        }
+        return re;
+    }
+    
+    int indexAt(vector<int> v, int val){
+        for (int i = 0; i < v.size(); i++){
+            if (v[i] == val){
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+    int comparision(int tar, vector<int> Vlist, vector<int> cubes){
+        if (tar <= maxVecVal(Vlist) * cubes[indexAt(Vlist, maxVecVal(Vlist) )] ){
+            return tar / maxVecVal(Vlist);
+        }
+        int sum = tar / maxVecVal(Vlist);
+        tar -= maxVecVal(Vlist) * cubes[indexAt(Vlist, maxVecVal(Vlist) )];
+        cubes[indexAt(Vlist, maxVecVal(Vlist) )] = 0;
+        return sum + comparision(tar,cVolList(cubes), cubes);
+    }
+    int minCubes(int le, int he, int wi, vector<int> cubes){
+        int Target =vol(le,he,wi);
+        
+        return comparision(Target, cVolList(cubes),cubes);
+    }
+};
+
+int main() {
+    FillBox F;
+    
+    cout<< F.minCubes(4,4,8,{0,10,1});
+}
