@@ -42,7 +42,11 @@ public:
 		int re = 2;
 		for (int i = 2; i < n / 2; i ++){
 			if (n % i == 0){
-				re++;
+				if ( i != n/i){
+				    re += 2;
+				}else {
+				    re ++;
+				}
 			}
 		}
 		return re;
@@ -54,13 +58,13 @@ public:
 		int currentFac = nFactor(currentNum);
 		int minN = currentNum;
 		int minF = currentFac;
+		cout<< currentFac<<endl;
 		
-		int compare = 0;
         
 		while (next_permutation(digits.begin(), digits.end())){
 		    currentNum = makeNums(digits);
 		    currentFac = nFactor(currentNum);
-		    
+		    cout<<currentFac<<endl;
 		    if ( minF == currentFac){
 		        minN = min(currentNum, minN);
 		    }else if (minF > currentFac){
