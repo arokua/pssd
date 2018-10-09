@@ -14,13 +14,14 @@ public:
 		for (int i = 0; i < power; i++){
 			ans *= n;
 		}
-		return n;
+		return ans;
 	}
 
 	int makeNums(vector<int> digits){
 		int num = 0;
 		for (int i = digits.size() - 1; i > -1; i--){
-			num += digits[i]* baseNTo(10, digits.size() - i - 1);
+			num += digits[i]* baseNTo(10,digits.size() - i - 1);
+			
 		}
 		return num;
 	}
