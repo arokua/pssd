@@ -51,10 +51,23 @@ public:
 		sort(digits.begin(), digits.end());
 		int currentNum = makeNums(digits);
 		int currentFac = nFactor(currentNum);
+		int minN = currentNum;
+		int minF = currentFac;
 		
 		int compare = 0;
-
-		while (next_permutation)
+        
+		while (next_permutation(digits.begin(), digits.end())){
+		    currentNum = makeNums(digits);
+		    currentFac = nFactor(currentNum);
+		    
+		    if ( minF == currentFac){
+		        minN = min(currentNum, minN);
+		    }else if (minF > currentFac){
+		        minF = currentFac;
+		        minN = currentNum;
+		    }
+		}
 		
+		return minN;
 	}
 };
