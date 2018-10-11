@@ -81,7 +81,9 @@ public:
 			n= minVec(findDuplicatePos(hands,maxVec(hands)[0]) )[0] ;
 		}
 		if (K == 0){
-			return n;
+			int c = n;
+			n = 0;
+			return c;
 
 		}
 

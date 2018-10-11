@@ -7,9 +7,6 @@ using namespace std;
 int main() {
 	KokoBananas K;
 	vector<int> a;
-	a.push_back(5);
-	a.push_back(8);
-	a.push_back(0);
-	
-	cout <<K.lastHand(a,4)<<endl;
+
+	cout <<K.lastHand({14,36,52,86,27,97,3,67},300)<<endl;
 }
