@@ -131,7 +131,7 @@ class CatGame {
 int main(){
     CatGame C;
     cout<<C.getNumber({-100000000, 100000000}, 100000000);
-}#include <iostream>
+}
 #include <vector>
 #include <algorithm>
 #include <string>
