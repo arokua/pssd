@@ -9,15 +9,26 @@ class CellRemoval{
     vector<int> deleteCell(vector<int> cells, int unlucky){
         vector<int> newZ;
         vector<int> grandChildren;
+        cout<<unlucky<<endl;
+        
         for (int i = 0; i < int(cells.size()); i++){
-            if (i != unlucky && cells[i] != unlucky && cells[i] != unlucky ){
+            if (i != unlucky && cells[i] != unlucky && cells[i] != unlucky){
                 newZ.push_back(cells[i]);
             }
             
             if (cells[i] == unlucky){
                 grandChildren.push_back(i);
-            }                
+            }
+            
+            if ( cells[i] == -1 && i == unlucky){
+                newZ.push_back(-1);
+            }
         }
+        
+        for (int i = 0; i < newZ.size(); i++){
+            cout << newZ[i] <<" ";
+        }cout<<"Z\n";
+        
         
         if ( grandChildren.size() == 1){
             newZ = deleteCell(newZ, grandChildren[0]);
