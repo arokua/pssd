@@ -20,57 +20,64 @@ class CubeStickers{
         return re;
     }
     
-    int colsPair(vector<string> col){
-        string s = col[0];
-        int currentI = 0;
-        int p = 0;
-        for (int i =1 ; i < col.size(); i++){
-            if (i != currentI && col[i] == s){
-                p++;
-            }if (col[i] != s){
-                s = col[i];
-                currentI = i;
+    int countDups(vector<int> dat){
+        int c = 0;
+        for (int i = 0; i < dat.size(); i++){
+            if (dat[i] > 1){
+                c++;
             }
         }
-        return p;
+        return c;
     }
     
-    int NonDup(vector<string> col){
-        string s = col[0];
-        int re;
-        for (int i = 1; i < col.size() - 1; i++){
-            if (s != col[i] && col[i] != col[i + 1]){
-                s = col[i + 1];
+    vector<int> countElements(vector<string> V){
+        vector<int> a;
+        int re = 1;
+        string s = V[0];
+        for (int i = 1; i < V.size(); i++){
+            if (s == V[i]){
                 re++;
+                
+            }else {
+                s = V[i];
+                a.push_back(re);
+                re = 1;
             }
         }
-        return re;
+        a.push_back(re);
+        return a;
+    }
+    
+    int single(vector<int> dat){
+        int c = 0;
+        for (int i = 0; i < dat.size(); i++){
+            if (dat[i] == 1){
+                c++;
+            }
+        }
+        return c;
     }
     
     string isPossible(vector<string> lor){
         sort(lor.begin(), lor.end());
         int n = distinctCol(lor);
-        int n2 = colsPair(lor);
+        int n2 = single(countElements(lor));
         int l = lor.size();
         if (n < 3){
             return "NO";
         }else if (n > 5){
             return "YES";
-        }else if (n == 3){
+        }else if (n == 3 || n == 5){
             
-            if (n2 == 3){
+            if (n == 3 && n2 ==0 ){
+                return "YES";
+            }else if (n == 5 && l > 5){
                 return "YES";
             }else {
                 return "NO";
             }
         }else if (n == 4){
-            if (0 < NonDup(lor) < 3  ){
-                return "YES";
-            }else {
-                return "NO";
-            }
-        }else {
-            if (n2 == 1  ){
+            if (countDups(countElements(lor)) == 2  ){
                 return "YES";
             }else {
                 return "NO";
