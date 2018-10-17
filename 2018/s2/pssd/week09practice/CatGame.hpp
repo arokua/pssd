@@ -110,30 +110,16 @@ class CatGame {
 
 
     int getNumber(vector < int > cats, int X) {
-	if (cats.size() == 1){
-            return 0;
-        }else if (cats[0] == -100000000 && cats[1] == 100000000 && X == 100000000){
-            
-            return 0;
-        }else if (cats[0] == 100000000 && cats[1] == -100000000 && X == 100000000){
-            return 0;
-        }
-	else {
-        	// make direction first number
-	        string s = "0";
+	
+	        string s = "1";
 	        int l = 1;
 	        string inc = "1";
-
-
-	        for (int i = 1; i < cats.size(); i++) {
-        	    inc = '0' + inc;
-        	}
         
         	for (int i = 1; i < cats.size(); i++) {
          	  	s = '0' + s;
-            		l += 1;
+            	l += 1;
+            	inc = '0' + inc;
         	}
-	        return moveCats(cats, s, X, Diff(cats), 2 * l + 1,  inc);
-}
+	        return moveCats(cats, s, X, Diff(cats), l + 1,  inc);
     	}
 };
