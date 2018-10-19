@@ -5,7 +5,7 @@ using namespace std;
 class RockStar{
 	int s = 0;
 public:
-	int getNumSong(int ff, int fs, int sf, int ss){
+	int getNumSongs(int ff, int fs, int sf, int ss){
 		if (ff == 0 && fs == 0){
 			if (ss == 0 && sf > 0){
 				int a = s;
@@ -34,7 +34,7 @@ public:
 				return a + 1;
 			}
 			s++;
-			return getNumSong(ff,fs-1,sf,ss);
+			return getNumSongs(ff,fs-1,sf,ss);
 		}
 	}
 };
