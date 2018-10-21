@@ -20,7 +20,7 @@ class DifferentStrings {
         }
         int re = B.length();    
         for (int i = 0; i < B.length(); i++){
-            if ( i > (A.length() - 1)){
+            if ( i > B.length() - (A.length() - 1)){
                 break;
             }
             string s = B.substr(i, A.length());
