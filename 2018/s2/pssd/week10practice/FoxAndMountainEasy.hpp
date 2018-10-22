@@ -7,80 +7,70 @@ using namespace std;
 
 class FoxAndMountainEasy{
     public:
-    vector<string> makeTrip(int n, int start, int end){
-        vector<string> re;
-        re.reserve(n + 1);
-        string s = "";
+    
+    string possible(int n, int start, int end, string history){
+        string c = "";
         if (start + n == end){
-            for(int i = 0; i < n; i++){
-                s +='U';
+            if (history.find("D") != string::npos ) {
+                return "NO";
             }
-            re.push_back(s);
-        }else if (start - n == end){
-            for(int i = 0; i < n; i++){
-                s +='D';
-            }re.push_back(s);
-            
-        }else{
-            
-            vector<int> h;
-            int ups = (end + n -start) / 2;
-            int downs = n - ups;
-            for (int i = 1; i < n; i ++){
-                if (ups > 0){
-                    h.push_back(0);
-                    s +='U';
-                    ups--;
-                }if (ups == 0){
-                    h.push_back(1);
-                    s += 'D';
-                }
-            }
-            re.push_back(s);
-            int myH = start;
-            while (next_permutation(h.begin(), h.end() )){
-                s = "";
-                for (int i = 0; i < h.size(); i++){
-                    
-                    if (h[i] == 0){
-                        s+= 'U';
-                    }else {
-                        if (myH - 1 > -1){
-                            s+= 'D';
-                        }else {
-                            s = "";
-                            break;
-                        }
-                    }
-                }
-                if (s != ""){
-                    re.push_back(s);
-                }
-            }
-
-        }
-        return re;
-    }
-    
-    int upCounter(string s){
-        int n = 0;
-        for (int i = 0; i < s.length(); i++){
-            if (s[i] == 'U'){
-                n++;
-            }
-        }
-        return n;
-    }
-    
-    string possible(int n, int s, int end, string history){
-        vector<string> li = makeTrip(n, s, end) ;
-        
-        for (int i = 0; i < li.size(); i++){
-            string c = li[i];
-            if (c.find(history) != string::npos){
+            else {
                 return "YES";
             }
+        }else if (start - n == end){
+            if (history.find("U") != string::npos ) {
+                return "NO";
+            }else {
+                return "YES";
+            }
+        }else if (start + n < end){
+            return "NO";
+        }else if (start - n > end){
+            return "NO";
         }
-        return "NO";
+        else {
+            int inc = (n + end - start) / 2;
+            int dec = n - inc;
+            int myH = start;
+            string s ="";
+            for (int i = 0; i < n; i++){
+                if (dec > 0){
+                    s += 'D';
+                    dec--;
+                }else if (inc > 0) {
+                    s += 'U';
+                    inc--;
+                }else {
+                    break;
+                }
+                
+            }
+            
+            if (s.find(history) != string::npos){
+                    return "YES";
+            }
+            bool fail = false;
+            while (next_permutation(s.begin(), s.end())){
+                for (int i = 0; i < s.length() ;i++){
+                    if (s[i] == 'D' && myH - 1 <0){
+                        myH = start;
+                        fail = true;
+                        break;
+                    }if (s[i] == 'D'){
+                            myH--;
+                    }else {
+                            myH++;
+                    }
+                    
+                }if (!fail){
+                    if (s.find(history) != string::npos){
+                        return "YES";
+                    }
+                }
+                myH = start;
+                fail = false;
+            }
+            return "NO";
+        }
     }
 };
