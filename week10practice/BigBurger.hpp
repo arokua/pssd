@@ -33,7 +33,7 @@ class BigBurger{
                 tiMe += s[i];
             }
             else {
-                wait = 0;
+                wait = max(wait, s[i]);
                 tiMe = a[i] + s[i];
                 
             }
