@@ -1,8 +1,6 @@
 #include <algorithm>
-
+#include <iostream>
 #include <vector>
-
-
 
 using namespace std;
 
@@ -21,34 +19,23 @@ class BigBurger{
         }
 
 
-        int tiMe = 0;
+        int tiMe;
 
         tiMe = a[0] + s[0];
 
-        int wait ;
-
+        int wait = 0;
         
-if (tiMe >= a[1]){
-
-            wait = tiMe - a[1];
-
-            tiMe += s[1];
-
-        }
-        else {
-            tiMe = a[1];
-            wait = 0;
-        }
-        int i = 2;
+        int i = 1;
+        
         while ( i <a.size() ){
             if (tiMe >= a[i]){
-                
                 wait = max(tiMe - a[i], wait);
                 tiMe += s[i];
             }
             else {
                 wait = 0;
-                tiMe = a[i];
+                tiMe = a[i] + s[i];
+                
             }
             i++; 
         }
