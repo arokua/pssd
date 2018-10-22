@@ -8,26 +8,27 @@ using namespace std;
 class FoxAndMountainEasy{
     public:
     vector<string> makeTrip(int n, int start, int end){
+        vector<string> re;
+        re.reserve(n + 1);
         if (start + n == end){
-            vector<string> re;
-            re.reserve(n + 1);
+            
+            
+            
             string s = "";
             for(int i = 0; i < n; i++){
                 s +='U';
             }re.push_back(s);
             return re;
         }else if (start - n == end){
-            vector<string> re;
-            re.reserve(n + 1);
+            
             string s = "";
             for(int i = 0; i < n; i++){
                 s +='D';
             }re.push_back(s);
             return re;
         }else{
-            vector<string> re;
+            
             vector<int> h;
-            re.reserve(n + 1);
             int ups = (end + n -start) / 2;
             int downs = n - ups;
             string s = "";
@@ -73,7 +74,11 @@ class FoxAndMountainEasy{
     string possible(int n, int s, int end, string history){
         int nUps = upCounter(history);
         if (s == end){
-            if (nUps <= n / 2){
+            int mid = n/2;
+            if (n%2 == 1){
+                n++;
+            }
+            if (nUps == mid){
                 return "YES";
             }
             else {
