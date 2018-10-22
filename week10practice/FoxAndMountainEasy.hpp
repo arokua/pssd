@@ -10,29 +10,23 @@ class FoxAndMountainEasy{
     vector<string> makeTrip(int n, int start, int end){
         vector<string> re;
         re.reserve(n + 1);
+        string s = "";
         if (start + n == end){
-            
-            
-            
-            string s = "";
             for(int i = 0; i < n; i++){
                 s +='U';
-            }re.push_back(s);
-            return re;
+            }
+            re.push_back(s);
         }else if (start - n == end){
-            
-            string s = "";
             for(int i = 0; i < n; i++){
                 s +='D';
             }re.push_back(s);
-            return re;
+            
         }else{
             
             vector<int> h;
             int ups = (end + n -start) / 2;
             int downs = n - ups;
-            string s = "";
-            for (int i = 0; i < n; i ++){
+            for (int i = 1; i < n; i ++){
                 if (ups > 0){
                     h.push_back(0);
                     s +='U';
@@ -43,22 +37,29 @@ class FoxAndMountainEasy{
                 }
             }
             re.push_back(s);
-            while (next_permutation(h.begin(), h.end())){
+            int myH = start;
+            while (next_permutation(h.begin(), h.end() )){
                 s = "";
                 for (int i = 0; i < h.size(); i++){
+                    
                     if (h[i] == 0){
                         s+= 'U';
                     }else {
-                        s+= 'D';
+                        if (myH - 1 > -1){
+                            s+= 'D';
+                        }else {
+                            s = "";
+                            break;
+                        }
                     }
                 }
-                re.push_back(s);
-                
+                if (s != ""){
+                    re.push_back(s);
+                }
             }
-            
-            return re;
+
         }
-        
+        return re;
     }
     
     int upCounter(string s){
@@ -82,5 +83,4 @@ class FoxAndMountainEasy{
         }
         return "NO";
     }
-
 };
