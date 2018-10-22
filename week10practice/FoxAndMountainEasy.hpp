@@ -72,19 +72,6 @@ class FoxAndMountainEasy{
     }
     
     string possible(int n, int s, int end, string history){
-        int nUps = upCounter(history);
-        if (s == end){
-            int mid = n/2;
-            if (n%2 == 1){
-                n++;
-            }
-            if (nUps == mid){
-                return "YES";
-            }
-            else {
-                return "NO";
-            }
-        }
         vector<string> li = makeTrip(n, s, end) ;
         
         for (int i = 0; i < li.size(); i++){
