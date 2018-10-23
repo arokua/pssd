@@ -9,21 +9,7 @@ class FoxAndMountainEasy{
     public:
     
     string possible(int n, int start, int end, string history){
-        string c = "";
-        if (start + n == end){
-            if (history.find("D") != string::npos ) {
-                return "NO";
-            }
-            else {
-                return "YES";
-            }
-        }else if (start - n == end){
-            if (history.find("U") != string::npos ) {
-                return "NO";
-            }else {
-                return "YES";
-            }
-        }else if (start + n < end){
+        if (start + n < end){
             return "NO";
         }else if (start - n > end){
             return "NO";
