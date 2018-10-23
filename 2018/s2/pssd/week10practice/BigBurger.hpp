@@ -4,8 +4,6 @@
 
 using namespace std;
 
-
-
 class BigBurger{
 
     public:
@@ -28,15 +26,9 @@ class BigBurger{
         int i = 1;
         
         while ( i <a.size() ){
-            if (tiMe >= a[i]){
-                wait = max(tiMe - a[i], wait);
-                tiMe += s[i];
-            }
-            else {
-                wait = max(wait, s[i-1]);
-                tiMe = a[i] + s[i];
-                
-            }
+            tiMe = max(tiMe, a[i]);
+            wait = max(wait, tiMe - a[i]);
+            tiMe += s[i];
             i++; 
         }
         return wait;
