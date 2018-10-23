@@ -36,7 +36,7 @@ class FoxAndMountainEasy{
                     return "NO";
                 }
             }
-            if (hU > inc || hD >> dec){
+            if (hU > inc || hD > dec){
                 return "NO";
             }else {
                 return "YES";
