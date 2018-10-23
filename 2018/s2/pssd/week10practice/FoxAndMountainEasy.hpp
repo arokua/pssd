@@ -18,7 +18,9 @@ class FoxAndMountainEasy{
         else {
             int inc = (n + end - start) / 2;
             int dec = n - inc;
-            
+            if ((n +end - start) % 2 == 1){
+                return "NO";
+            }
             int hU = 0;
             int hD = 0;
             
