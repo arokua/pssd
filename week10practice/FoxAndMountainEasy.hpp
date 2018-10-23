@@ -9,6 +9,7 @@ class FoxAndMountainEasy{
     public:
     
     string possible(int n, int start, int end, string history){
+        string c = "";
         if (start + n < end){
             return "NO";
         }else if (start - n > end){
@@ -17,46 +18,27 @@ class FoxAndMountainEasy{
         else {
             int inc = (n + end - start) / 2;
             int dec = n - inc;
-            int myH = start;
-            string s ="";
-            for (int i = 0; i < n; i++){
-                if (dec > 0){
-                    s += 'D';
-                    dec--;
-                }else if (inc > 0) {
-                    s += 'U';
-                    inc--;
-                }else {
-                    break;
-                }
-                
-            }
             
-            if (s.find(history) != string::npos){
-                    return "YES";
-            }
-            bool fail = false;
-            while (next_permutation(s.begin(), s.end())){
-                for (int i = 0; i < s.length() ;i++){
-                    if (s[i] == 'D' && myH - 1 <0){
-                        myH = start;
-                        fail = true;
-                        break;
-                    }if (s[i] == 'D'){
-                            myH--;
-                    }else {
-                            myH++;
-                    }
-                    
-                }if (!fail){
-                    if (s.find(history) != string::npos){
-                        return "YES";
-                    }
+            int hU = 0;
+            int hD = 0;
+            
+            for (int i = 0; i < int( history.length()); i++ ){
+                if (history[i] == 'U'){
+                    hU++;
+                    start++;
+                }else {
+                    hD++;
+                    start--;
                 }
-                myH = start;
-                fail = false;
+                if (start < 0){
+                    return "NO";
+                }
             }
-            return "NO";
+            if (hU > inc || hD >> dec){
+                return "NO";
+            }else {
+                return "YES";
+            }
         }
     }
 };
