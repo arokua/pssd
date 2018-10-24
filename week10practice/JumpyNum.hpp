@@ -22,17 +22,17 @@ class JumpyNum{
                 return 0;
             }
         }
+        while (low < 10){
+            counter ++;
+            low++;
+        }
         for (int i = low; i < high + 1; i++){
             string s = to_string(i);
             int n = 0;
             int len = s.length();
-            if (i < 10){
-
-                counter++;
-
-            }if (i == 10){
-                counter+= 0;
-            }if (19 < i < 91 && i % 10 == 0 ){
+            if (i == 10){
+                continue;
+            }if (i < 91 && i % 10 == 0 ){
                 counter++;
             }if (i > 99 && i % IntPow(10, int(len - 1) ) == 0){
                 counter += 0;
