@@ -37,7 +37,7 @@ class CorporationSalary{
 
         for (int i = 0; i < relations.size(); i++){
         	int employees = countEmployees(relations[i]);
-            if (employees > 0 ){
+            if (employees > 1 ){
                 re += employees;
             }else if (employees == 1){
                 re += 1;
