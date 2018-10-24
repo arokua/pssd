@@ -39,10 +39,8 @@ class CorporationSalary{
         	int employees = countEmployees(relations[i]);
             if (employees > 1 ){
                 re += employees;
-            }else if (employees == 1){
-                re += 1;
             }else {
-            	re += 0;
+                re += 1;
             }
         }
 
