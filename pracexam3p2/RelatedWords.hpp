@@ -20,13 +20,16 @@ public:
 			return 0;
 		}
 		int rem = 0;
-		if ( a != b){
-			for (int i = 0; i < l; i ++){
-				if (A[i] - B[i] != 0){
+		int c = A[0] - B[0]
+		if ( a != b && (a or b)){
+			for (int i = 1; i < l; i ++){
+				if (A[i] - B[i] != c){
 					rem ++;
 				}
 			}
 			return rem;
 		}
+
+		
 	}
 };
