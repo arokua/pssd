@@ -52,7 +52,7 @@ class Tour{
         return sqrt(power2(A.getX() - B.getX()) + power2(A.getY() - B.getY()) );
     }
     
-    void shortestDistance(){
+    vector<int> shortestDistance(){
         vector<int> nodes;
         int nC = TargetPlaces.size();
         nodes.reserve(nC );
@@ -68,6 +68,9 @@ class Tour{
         vector<int> re;
         re = nodes;
         while (next_permutation(nodes.begin(), nodes.end())){
+            if (nodes[0] != 1){
+                break;
+            }
             d = 0;
             for (int i = 0; i < nC - 1; i++){
                d += distance(TargetPlaces[nodes[i] - 1], TargetPlaces[nodes[i + 1] - 1]);
@@ -85,6 +88,7 @@ class Tour{
                 cout << " ";
             }else {cout << endl;}
         }
+        return re;
     }
     
 };
