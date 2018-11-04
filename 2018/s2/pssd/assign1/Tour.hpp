@@ -4,6 +4,7 @@
 #include <cmath>
 #include <climits>
 #include <ctime>
+#include <map>
 
 using namespace std;
 
@@ -52,7 +53,11 @@ class Tour{
         return sqrt(power2(A.getX() - B.getX()) + power2(A.getY() - B.getY()) );
     }
     
-    vector<int> shortestDistance(){
+    vector<City> getTargetLoc(){
+        return TargetPlaces;
+    }
+    
+    vector<int> shortestDistance(string pri){
         vector<int> nodes;
         int nC = TargetPlaces.size();
         nodes.reserve(nC );
@@ -81,12 +86,13 @@ class Tour{
             }
         }
         
-        
-        for (int i = 0; i < nC; i++){
-            cout << re[i];
-            if (i < nC - 1){
-                cout << " ";
-            }else {cout << endl;}
+        if (pri == "YES"){
+            for (int i = 0; i < nC; i++){
+                cout << re[i];
+                if (i < nC - 1){
+                    cout << " ";
+                }else {cout << endl;}
+            }
         }
         return re;
     }
