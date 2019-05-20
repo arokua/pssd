@@ -29,8 +29,7 @@ int PrefixFreeSets::maxElements(vector<string> words){
                 temp++;
             }
         }
-        re = max(re, temp);
-        temp = 1;
+        break;
 	}
 	return max(re, temp);
 }
