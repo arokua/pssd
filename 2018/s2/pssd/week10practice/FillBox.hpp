@@ -11,21 +11,27 @@ long pow(int base, int P){
 class FillBox{
     public:
     int minCubes(int h, int w, int l, vector<int> cubes){
-        long answer = LONG_MAX;
+        long answer = 0;
         long target = h * w * l;
-        for (int i = 0; i < cubes.size(); i++){
+        
+        for (int i = cubes.size() - 1; i > - 1; i--){
             //Volume of a single i-th cube
             long singleVolume = pow(pow(2, i), 3);
-            if (target % singleVolume == 0){
-			//Amount of i-cubes that can fill the box 
-                long quotient = target / singleVolume;
-                if (quotient <= cubes[i] ){
-                   answer = min(answer, quotient);
-                }
-            } 
-
+            long quotient = target / singleVolume;
+            if (target == 0 ) break;
+            
+            if(target / singleVolume <= cubes[i]) 
+            {
+              target -= singleVolume * quotient;
+              if (answer == 0) answer = quotient;
+              else answer += quotient;
+            }else {
+              target -= singleVolume * cubes[i];
+              if (answer == 0) answer = cubes[i];
+              else answer +=cubes[i];
+            }
         }
-        if (answer != LONG_MAX) return answer;
+        if (target == 0) return answer;
         else return -1;
     }
 };
