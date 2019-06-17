@@ -196,39 +196,43 @@ class TheThief{
         
         int currentWeight = 0; // Present knapsack weight
         vector<int> pickingOrder;
-        while (currentWeight < maxWeight){ /// Checking if the knap sack is not full
+        while (currentWeight <= maxWeight){ /// Checking if the knap sack is not full
             int now = ShortestTripNoSteal[index];// Current City to check
             int val = 0; // Comparision val
             int ItemNode = -1; // The node of the item
             int oldNode;
-            int tempWeight; // A tempoarily weight to check 
+            int tempWeight; // A temporary weight to check 
             int chosenWeight; // and increment the knapsack weight
-            if (index < ShortestTripNoSteal.size()){ 
+            double current_speed;
+
+            if (index <= CitiesWithItems){ 
                 for (int i = 0; i < StuffList.size(); i++){ //Go through the items list 
                     if (StuffList[i].getSpecs('c') == now) { // Check if the item is at the current city and it is not taken
                         tempWeight = StuffList[i].getSpecs('W');
-                        if (currentWeight + tempWeight <= maxWeight){ //The item can be added to knap sack
+                        if (currentWeight + tempWeight <= maxWeight){ 
+                        	//This item can be added to knap sack
+      
                             // Now check if it is the maximum value
-                            if (val < StuffList[i].getSpecs('V')){
+                            if (val <= StuffList[i].getSpecs('V')){
                                 // The current item is more valuable than the previous one
                                 val = StuffList[i].getSpecs('V');
                                 chosenWeight = tempWeight;
                                 oldNode = ItemNode;
                                 ItemNode = StuffList[i].getSpecs('I');
-                            }
-                            
+                                //bag's weight increases
+                                currentWeight += chosenWeight;
+                                //Remove chosen item from the list
+                                StuffList.erase(StuffList.begin() + i);
+                                pickingOrder.push_back(ItemNode);
+                            }                            
                         }
                     }
                 }
-
-                currentWeight += chosenWeight;
-                if (ItemNode > 0){
-                    pickingOrder.push_back(ItemNode);
-                }
                 index++;
             }
-            else if (index >= ShortestTripNoSteal.size()){
-                break;
+            else if (index > CitiesWithItems){
+                if (currentWeight <= maxWeight && StuffList.size() > 0) index = 1;
+                else break;
             }
             
         }
@@ -243,6 +247,7 @@ class TheThief{
 };
 
 int main(){
+	
 	Tour a;
 	a.addCity(0, 0);
     a.addCity(10, 0);
@@ -257,8 +262,8 @@ int main(){
     tt.aStolable(5,20,3);
     tt.aStolable(9,40,4);
     tt.action();
-	// get input
-	/*
+	/* get input
+	
 	int current_line = 1;
 	vector<string> input ;
 	Tour tour;
@@ -270,6 +275,7 @@ int main(){
 	//Speed
 	double v_Min;
 	double v_Max;
+
 	while (true){
 	    input = takeInput();
 	    //Break when input is empty, meaning end of file
@@ -280,7 +286,10 @@ int main(){
 	    //Get the speed constraints
 	    else if (input[0] == "MIN") v_Min = stod(input.back());
 	    else if (input[0] == "MAX") v_Max = stod(input.back());
-
+	    
+	    if (current_line < n + 11 && current_line > 10) {
+	    	T.addCity(stoi(input[1].c_str()), stoi(input[2].c_str()));
+	    }
 	    current_line ++;
 	}
 	cout <<endl;
