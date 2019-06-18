@@ -6,7 +6,7 @@
 #include <ctime>
 #include <map>
 #include <string> 
-
+#include <fstream>
 using namespace std;
 
 int power2(int n){
@@ -84,7 +84,7 @@ class Tour{
         return TargetPlaces;
     }
     
-    vector<int> shortestDistance(string pri){
+    vector<int> shortestDistance(){
         vector<int> nodes;
         int nC = TargetPlaces.size();
         nodes.reserve(nC );
@@ -113,13 +113,6 @@ class Tour{
             }
         }
         
-        if (pri == "YES"){
-        	cout <<"[";
-            for (int i = 0; i < nC; i++){
-                cout << re[i];
-                if (i < nC - 1) cout << ",";
-            }cout <<"]\n";
-        }
         return re;
     }
     
@@ -190,7 +183,7 @@ class TheThief{
     
     void action(){
         // Begining getting picking order
-        vector<int> ShortestTripNoSteal = t.shortestDistance("YES"); // The original trip when no items to be stole
+        vector<int> ShortestTripNoSteal = t.shortestDistance(); // The original trip when no items to be stole
         int CitiesWithItems = ShortestTripNoSteal.size() - 1;// n - 1 value
         int index = 1; //The nth city from the first city
         
@@ -236,13 +229,25 @@ class TheThief{
             }
             
         }
-        //Print out picking order
-        cout <<"[";
-        for (int i = 0; i < pickingOrder.size(); i++){
-            cout << pickingOrder[i];
-            if(i < pickingOrder.size() - 1) cout << ",";
+        //Print output to file
+        ofstream result;
+        result.open("fnl_soln.ttp");
+
+        //Trip order
+        result <<"[";
+        for (int c = 0; c < CitiesWithItems + 1; c++){
+            result << ShortestTripNoSteal[c];
+            if(c < CitiesWithItems) result << ",";
         }
-        cout <<"]\n";
+        result <<"]\n";
+        //Picking order
+        result <<"[";
+        for (int i = 0; i < pickingOrder.size(); i++){
+            result << pickingOrder[i];
+            if(i < pickingOrder.size() - 1) result << ",";
+        }
+        result <<"]\n";
+		result.close();
     }
 };
 

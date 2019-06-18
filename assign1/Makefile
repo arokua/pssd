@@ -6,10 +6,9 @@ TTP_FILE:=TTP.cpp ${wildcard TTP-*.cpp}
 CXXFLAGS=--std=gnu++11 -I. -Iincludes 
 
 all: ${EXECS} 
+	
 TTP: ${TTP_FILE} ${MYALL} 
 	g++ ${CXXFLAGS} -o $@ $^ 
-
-	./TTP $${MYALL} > fnl_soln.ttp;
 clean:
 	-rm -rf ${EXECS} *.o
 
