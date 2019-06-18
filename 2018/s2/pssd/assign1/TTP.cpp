@@ -18,7 +18,7 @@ vector<string> takeInput(){
     // Split them by spaces and store to a vector
     string in;
     vector<string> pp;
-    std::cout << "";
+    
     getline (std::cin, in);
     int len = in.length(); //length of input
     string temp = ""; //tempoary string
@@ -29,11 +29,11 @@ vector<string> takeInput(){
         	temp += current;
         }
         else{
-        	pp.push_back(temp);
+        	if (temp != "") pp.push_back(temp);
             temp ="";
         }
         if (i == len - 1){
-            pp.push_back(temp);
+            if (temp != "") pp.push_back(temp);
         }
     }
     return pp;
@@ -165,16 +165,25 @@ class TheThief{
     double Rent; //... as name suggest
     Tour t;// storing a tour information here
     public:
-    //Intitalsing the thief and knapsack
-    TheThief(int maV, int mV, int R, int W, Tour n){
-        
-        maxV = maV;
-        miV = mV;
-        Rent = R;
-        maxWeight = W;
-        t = n;//mainly to get the tour name
+    //Intitalsing the thief 
+    TheThief(){
+    };
+    void setSpeed1(int v1){
+    	maxV = v1;
+    }
+    void setSpeed2(int v2){
+    	miV = v2;
+    }
+    void setRent(double R){
+    	Rent = R;
+    }
+    void setWeight(int W){
+    	maxWeight = W;
     }
     
+    void setTrip(Tour p){
+    	t = p;
+    }
     //Get a new item
     void aStolable(int m, int Prof, int Location){
         Item temp(m, Prof, Location);
@@ -252,7 +261,8 @@ class TheThief{
 };
 
 int main(){
-	
+	/*
+	Given test case on myuni
 	Tour a;
 	a.addCity(0, 0);
     a.addCity(10, 0);
@@ -266,8 +276,8 @@ int main(){
     tt.aStolable(1,10,2);
     tt.aStolable(5,20,3);
     tt.aStolable(9,40,4);
-    tt.action();
-	/* get input
+    tt.action();*/
+	// get input
 	
 	int current_line = 1;
 	vector<string> input ;
@@ -280,23 +290,41 @@ int main(){
 	//Speed
 	double v_Min;
 	double v_Max;
-
+	double rent;
+	TheThief t2;
 	while (true){
 	    input = takeInput();
 	    //Break when input is empty, meaning end of file
-	    if (input.size() == 0) break;
+	    if (input.size() == 0) {
+	    	break;
+	    }
 	    if (input[0] == "DIMENSION:") n = stoi(input.back());
 	    //Get knapsack weight
 	    else if (input[0] == "CAPACITY") W = stoi(input.back());
 	    //Get the speed constraints
 	    else if (input[0] == "MIN") v_Min = stod(input.back());
 	    else if (input[0] == "MAX") v_Max = stod(input.back());
-	    
+	    else if (input[0] == "RENTING") rent = stod(input.back());
+	    //read in city specs
 	    if (current_line < n + 11 && current_line > 10) {
-	    	T.addCity(stoi(input[1].c_str()), stoi(input[2].c_str()));
+	    	//cout <<current_line ;cout <<endl;
+	    	T.addCity(stoi( input[1].c_str()), stoi(input[2].c_str()));
+	    }
+	    
+	    //read in items specs
+	    else if (current_line == n + 11) {
+	    	//Add para to thief
+	    	t2.setSpeed1(v_Min);
+	    	t2.setSpeed2(v_Max);
+	    	t2.setRent(rent);
+	    	t2.setWeight(W);
+	    	t2.setTrip(T);
+	    }
+	    else if (current_line > n + 11) {
+	    	t2.aStolable(stoi(input[2].c_str()), stoi(input[1].c_str()), stoi(input[3].c_str()));
 	    }
 	    current_line ++;
 	}
-	cout <<endl;
-	cout << n << " " << W << " " << v_Min <<" " << v_Max<<endl;*/
+	t2.action();
+	
 }
