@@ -250,7 +250,6 @@ class TheThief{
         }
         result <<"]\n";
         //Picking order
-		cout << "Trip[ fin\n";
         result <<"[";
         for (int i = 0; i < pickingOrder.size(); i++){
             result << pickingOrder[i];
