@@ -11,10 +11,13 @@ TTP: ${TTP_FILE} ${MYALL}
 	g++ ${CXXFLAGS} -o $@ $^ 
 
 	-@read -p "" input ;\
-	echo $$input;\
 	./TTP $$input >fnl_soln.ttp;
 clean:
 	-rm -rf ${EXECS} *.o
 
 %.o: %.cpp %.h
 	g++ ${CXXFLAGS} -c $<
+
+#input file
+-@read -p "" input ;\
+./TTP $$input >fnl_soln.ttp;
