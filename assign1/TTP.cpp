@@ -321,7 +321,7 @@ int main(){
 	    	t2.setTrip(T);
 	    }
 	    else if (current_line > n + 11) {
-	    	cout << stoi(input[2].c_str())<< " " stoi(input[1].c_str())<< " " stoi(input[3].c_str()) <<endl;
+	    	cout << stoi(input[2].c_str())<< " " <<stoi(input[1].c_str())<< " " <<stoi(input[3].c_str()) <<endl;
 	    	t2.aStolable(stoi(input[2].c_str()), stoi(input[1].c_str()), stoi(input[3].c_str()));
 	    }
 	    current_line ++;
