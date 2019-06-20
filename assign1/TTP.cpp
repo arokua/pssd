@@ -64,6 +64,8 @@ class Tour{
     private:
     int counter = 1;
     vector<City> TargetPlaces;
+    // adjacency matrix
+    //map<int, vector<double>> adjacency;
     public:
     void addCity(int X, int Y){
         TargetPlaces.push_back(City(X, Y, counter));
@@ -93,16 +95,25 @@ class Tour{
         }
         double minD = 1.0 * INT_MAX;
         double d = 0;
-        for (int i = 0; i < nC - 1; i++){
+        for (int i = 0; i < nC; i++){
+        	/*for (int j = 0 ; j < nC; j++){
+        		if (j >= i) adjacency[i].push_back(distance(TargetPlaces[i], TargetPlaces[j]));
+        		else adjacency[i].push_back(adjacency[j][i]);
+        	}*/
             d += distance(TargetPlaces[i], TargetPlaces[i + 1]);
         }
         minD = min(d, minD);
         vector<int> re;
+        re.push_back(0);
         re = nodes;
+        int count = 0;
+        //Maximum loop times
+        int break_point = 2*nC * log(nC);
         while (next_permutation(nodes.begin(), nodes.end())){
-            if (nodes[0] != 1){
+            if (nodes[0] != 1 || count > break_point){
                 break;
             }
+            //cout << count <<" "<<break_point <<endl;
             d = 0;
             for (int i = 0; i < nC - 1; i++){
                d += distance(TargetPlaces[nodes[i] - 1], TargetPlaces[nodes[i + 1] - 1]);
@@ -111,8 +122,8 @@ class Tour{
                 minD = d;
                 re = nodes;
             }
+            count ++;
         }
-        
         return re;
     }
     
@@ -198,6 +209,16 @@ class TheThief{
         
         int currentWeight = 0; // Present knapsack weight
         vector<int> pickingOrder;
+        ofstream result;
+        result.open("fnl_soln.ttp");
+
+        //Trip order
+        result <<"[";
+        for (int c = 0; c < CitiesWithItems + 1; c++){
+            result << ShortestTripNoSteal[c];
+            if(c < CitiesWithItems) result << ",";
+        }
+        result <<"]\n";
         while (currentWeight <= maxWeight){ /// Checking if the knap sack is not full
             int now = ShortestTripNoSteal[index];// Current City to check
             int val = 0; // Comparision val
@@ -239,16 +260,7 @@ class TheThief{
             
         }
         //Print output to file
-        ofstream result;
-        result.open("fnl_soln.ttp");
-
-        //Trip order
-        result <<"[";
-        for (int c = 0; c < CitiesWithItems + 1; c++){
-            result << ShortestTripNoSteal[c];
-            if(c < CitiesWithItems) result << ",";
-        }
-        result <<"]\n";
+        
         //Picking order
         result <<"[";
         for (int i = 0; i < pickingOrder.size(); i++){
@@ -261,15 +273,20 @@ class TheThief{
 };
 
 int main(){
-	/*
-	Given test case on myuni
+	/*	Given test case on myuni
 	Tour a;
 	a.addCity(0, 0);
     a.addCity(10, 0);
     a.addCity(0, 10);
     a.addCity(10, 10);
     
-    TheThief tt(0.1, 1, 1.00, 100, a);
+    TheThief tt;
+    tt.setSpeed1(0.1);
+    tt.setSpeed2(1);
+    tt.setRent(1.0);
+    tt.setWeight(100);
+    tt.setTrip(a);
+
     tt.aStolable(1,10,2);
     tt.aStolable(1,40,4);
     tt.aStolable(5,20,3);
@@ -321,7 +338,6 @@ int main(){
 	    	t2.setTrip(T);
 	    }
 	    else if (current_line > n + 11) {
-	    	cout << stoi(input[2].c_str())<< " " <<stoi(input[1].c_str())<< " " <<stoi(input[3].c_str()) <<endl;
 	    	t2.aStolable(stoi(input[2].c_str()), stoi(input[1].c_str()), stoi(input[3].c_str()));
 	    }
 	    current_line ++;
