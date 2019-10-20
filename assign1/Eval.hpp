@@ -83,7 +83,7 @@ public:
     ifstream sr(fileName.c_str());
     if (! sr.is_open()) return false;
 
-    bool status=getline(sr,input);
+    bool status= bool(getline(sr,input));
     while((status)&&(!(input.find("NODE_COORD_SECTION")!=string::npos))){
       string match;   // holds string to match
       string stripped;  // holds processed string stripped of spaces.
@@ -110,20 +110,20 @@ public:
 	;
       }
      // read new line
-      status=getline(sr,input);
+      status=bool(getline(sr,input));
     }
     
     // now we are at the map section of the file.
     // ******************************************
     // read the cities.
-    status=getline(sr,input);  // read the first line
+    status=bool(getline(sr,input));  // read the first line
     // then subsequent lines
     // read the cities -- one value per line
     for (int i=0;i<n;i++){
       cities.push_back(City()); // add a new city object
       if (readCity(removeDoubleSpace(replaceGeneric(input,"\t"," ")),
 		   cities[i])){
-	status=getline(sr,input); // read next line
+	     status=bool(getline(sr,input)); // read next line
       }else{
 	// there was a problem reading... report and return
 	cerr << "inconsistent city data in file" << endl;
@@ -135,7 +135,7 @@ public:
     // Now we are at the items section of the file. 
     // ********************************************
 
-    status=getline(sr,input);  // read the first line
+    status=bool(getline(sr,input));  // read the first line
     // reading the list of available values at nodes.
     for (int i=0;i<mItems;i++){
       int nodeIndex=0; // the node index of the item
@@ -151,7 +151,7 @@ public:
         itemsAll[item.index]=nodeIndex;           // record the city in which the item
                                                   // resides
 
-	status=getline(sr,input); // read next line
+	status=bool(getline(sr,input)); // read next line
       }else{
 	// there was a problem reading... report and return
 	cerr << "inconsistent item data in file" << endl;
@@ -298,7 +298,7 @@ public:
     if (! sr.is_open()) return false;  // file can't open then exit
 
 
-    bool status=getline(sr,input);     // file can open grab the first line
+    bool status= bool(getline(sr,input));     // file can open grab the first line
     string commaSep = ProblemTPP::removeDoubleSpace(
 			 ProblemTPP::replaceGeneric(
 			   ProblemTPP::replaceGeneric(input,"["," "),"]"," "));
@@ -353,7 +353,7 @@ public:
 
       // now to read the allocation of items
       // ***********************************
-      status=getline(sr,input);     // grab the line of items
+      status=bool(getline(sr,input));     // grab the line of items
       // remove everything except the commas and split
       commaSep = ProblemTPP::removeDoubleSpace(
 			 ProblemTPP::replaceGeneric(
