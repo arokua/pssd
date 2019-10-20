@@ -244,12 +244,19 @@ class TheThief{
         result.open("fnl_soln.ttp");
 
         //Trip order
-        result <<"[";
+        
         for (int c = 0; c < CitiesWithItems + 1; c++){
             result << ShortestTripNoSteal[c];
             if(c < CitiesWithItems) result << ",";
         }
-        result <<"]\n";
+        result <<"\n";
+
+        cout <<"[";
+        for (int c = 0; c < CitiesWithItems + 1; c++){
+            cout << ShortestTripNoSteal[c];
+            if(c < CitiesWithItems) cout << ",";
+        }
+        cout <<"]\n";
         while (currentWeight <= maxWeight){ /// Checking if the knap sack is not full
             int now = ShortestTripNoSteal[index];// Current City to check
             int val = 0; // Comparision val
@@ -293,13 +300,11 @@ class TheThief{
         //Print output to file
         
         //Picking order
-        result <<"[";
         for (int i = 0; i < pickingOrder.size(); i++){
             result << pickingOrder[i];
             if(i < pickingOrder.size() - 1) result << ",";
         }
-        result <<"]\n";
-		result.close();
+        result <<"\n";
     }
 };
 
