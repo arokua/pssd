@@ -36,10 +36,8 @@ class CorporationSalary{
         for (int k = 0; k < totalworkers; k++){
             result = result + salary_calc(k);
         }
+        relationships.clear();
+        salaries.clear();
         return result;
     }
 };
-
-int main(){
-
-}
