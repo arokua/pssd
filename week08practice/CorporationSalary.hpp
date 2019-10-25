@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 
+using namespace std;
 class CorporationSalary{
     private:
     map <int, vector<int> > relationships;
