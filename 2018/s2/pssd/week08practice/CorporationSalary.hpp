@@ -39,3 +39,7 @@ class CorporationSalary{
         return result;
     }
 };
+
+int main(){
+
+}
