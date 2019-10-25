@@ -1,88 +1,40 @@
+#include <map>
 #include <vector>
-
 #include <string>
 
-
-using namespace std;
-
-
-
-/*class Dict{
-    string name;
-    
-    public:
-    Dict(int n){
-        if (n == 0){
-            vector<string> name;
-        }
-    }
-    void addElement(string element){
-        
-    }
-};
-
-
-
-class makeClass{
-   public:
-   void makeDict(string name, int type){
-       // 0: string, 1 : int, 2: double
-       Dict name;
-   }
-};*/
-
-
-
 class CorporationSalary{
-
+    private:
+    map <int, vector<int> > relationships;
+    vector<int> salaries;// Individual salaries
     public:
-
-    int countEmployees( string staff){
-
-        int employed = 0;
-
-        for (int i = 0; i < int(staff.length()); i++){
-
-            if (staff[i] == 'Y'){
-
-                employed++;
-
+    long salary_calc( int employee){
+        //Calculate the salary of the employee
+        int total_subr = relationships[employee].size();
+        if (total_subr > 1){
+            salaries[employee] = 0;
+            for (int i = 0; i < total_subr; i++){
+                salaries[employee] += salary_calc(relationships[employee][i]);
             }
-
         }
-
-        return employed;
-
+        return salaries[employee];
     }
-
-
-
     long totalSalary(vector<string> relations){
-
-        vector<int> employed;
-
-        long re = 0;
-
-        employed.reserve(relations.size());
-
-        for (int i = 0; i < relations.size(); i++){
-
-            if (countEmployees(relations[i]) > 0 ){
-
-                re += countEmployees(relations[i]);
-
-            }else {
-
-                re += 1;
-
-            }
-
+        int totalworkers = relations.size();
+        for (int i = 0; i < totalworkers; i++){
+            salaries.push_back(1);
         }
-
-        
-
-	return re;
-
+        //Start adding employees to the map
+        for (int e = 0; e < totalworkers; e++){
+            relationships[e].reserve(0);
+            for (int c = 0; c < int(relations[e].length()); c++){
+                if (relations[e][c] == 'Y') relationships[e].push_back(c);
+            }
+        }
+        //Calculate all the salaries
+        long result = 0;
+        for (int k = 0; k < totalworkers; k++){
+            result = result + salary_calc(k);
+        }
+        return result;
     }
-
 };
