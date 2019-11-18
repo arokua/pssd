@@ -12,6 +12,7 @@ int power2(int n){
 }
 
 class City{
+    //Hold positional position of an individual city on the trip
     int Xcoor;
     int Ycoor;
     int nodeN;
@@ -33,10 +34,11 @@ class City{
 };
 
 class Tour{
+    //Keeps track of all target cities and yields the shortest trip through them
     private:
     int counter = 0;
     vector<City> TargetPlaces;
-    // adjacency matrix
+    // adjacency matrix of the cities nodes
     vector<vector<double>> adjacency;
     public:
     void addCity(int X, int Y){
@@ -80,6 +82,7 @@ class Tour{
     }
     
     int nearestCity(int now, int status[]){
+        // find the nearest unvisited city from current
         int re = 1;
         double smallest_distance = 1.0*INT_MAX;
         for (int i = 1; i < TargetPlaces.size(); i++ ){
@@ -112,7 +115,7 @@ class Tour{
         return sum;
     }
     vector<int> shortestDistance(){
-        //Return the shortest tour;
+        //Return a tour with as small distance covered overall
         vector<int> order;
         order.push_back(1);
         int status[counter];
